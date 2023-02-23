@@ -1,0 +1,28 @@
+.sidebar {
+  width: var(--twentypercent);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background-image: url("../img/tel-300x1080.webp");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: fixed;
+
+  .navlinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0;
+    
+    .navElement a {
+      display: block;
+      padding: 0.5em 1.2em;
+      text-decoration: none;
+    }
+  }
+}
