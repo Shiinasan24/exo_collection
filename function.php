@@ -19,3 +19,14 @@
     $key = sha1(sha1("k6fDz?.4ot/##" . $password . "_'çy=RrhFZbdnjz"));
     return $key;
   }
+
+  function dda(array $as){
+    while ($as){
+      echo '<pre>';
+      var_dump($as);
+      exit();
+      echo '</pre>';
+    }
+  }
+
+  

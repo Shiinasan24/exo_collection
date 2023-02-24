@@ -1,5 +1,6 @@
 <?php 
-  include_once("../environnement.php");
+  include_once("environnement.php");
+  include_once("function.php");
 ?>
 
 <!DOCTYPE html>
@@ -8,20 +9,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <title>Accueil</title>
 </head>
 
 <body>
-  <main class="wrapper">
+  <main class="wrapperCollection">
 
     <aside class="sidebar">
 
-      <?php include_once("../component/sidebar.php"); ?>
+      <?php require_once("sidebar.php"); ?>
 
     </aside>
   
-    <div class="main">
+    <div class="mainCollection">
       
       <div class="wrapperMain">
 

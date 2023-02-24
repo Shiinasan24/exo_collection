@@ -1,6 +1,6 @@
 <?php 
-  include_once("../environnement.php");
-  include_once("../component/function.php");
+  include_once("environnement.php");
+  include_once("function.php");
 
   // Requests
   // -- User
@@ -13,8 +13,8 @@
   
   if(isset($_POST["name"]) AND isset($_POST["password"])) {
     $role = 2;
-    $name = strtolower(htmlentities($_POST["name"]));
-    $password = strtolower(htmlentities($_POST["password"]));
+    $name = htmlentities($_POST["name"]);
+    $password = htmlentities($_POST["password"]);
     $encryptedPassword = encryptionKey($password);
     
     $addUser = $bdd -> prepare("INSERT INTO user(user_role, user_name, user_password) VALUES(?,?,?)");
@@ -32,7 +32,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <title>Inscription</title>
 </head>
 <body>
@@ -40,7 +40,7 @@
 
     <aside class="sidebar">
 
-      <?php include_once("../component/sidebar.php"); ?>
+      <?php include_once("sidebar.php"); ?>
 
     </aside>
 

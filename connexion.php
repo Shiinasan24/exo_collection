@@ -1,6 +1,6 @@
 <?php 
-  include_once("../environnement.php");
-  include_once("../component/function.php");
+  include_once("environnement.php");
+  include_once("function.php");
 
 
   if(isset($_GET["inscription"])) {
@@ -19,22 +19,31 @@
 
 
   if(isset($_POST["name"]) AND isset($_POST["password"])) {
-    $userName = strtolower(htmlentities($_POST["name"]));
+    $userName = htmlentities($_POST["name"]);
     $userPassword = strtolower(htmlentities($_POST["password"]));
     $decryptedPassword = encryptionKey($userPassword);
+    
+    $rqUser = $bdd -> query("SELECT * FROM user WHERE user_name = '$userName'");
+    $data = $rqUser -> fetch();
+    $dataUserID = $data["id"];
+    $dataUserName = $data["user_name"];
+    $dataUserPassword = $data["user_password"];
+    $dataUserRole = $data["user_role"];
+    
+    $userNameToLower = strtolower($userName);
+    $DataUserNameToLower = strtolower($dataUserName);
 
-    $request = $bdd -> query("SELECT * FROM user WHERE user_name = '$userName'");
-    $toto = $request -> fetchAll();
-    var_dump($toto["user_name"]);
-
-    if($userName === $toto["user_name"]) {
-      // header("Location: index.php?success=1");
-      exit();
+    if($userNameToLower === $DataUserNameToLower AND $decryptedPassword === $dataUserPassword) {
+      $_SESSION["session_id"] = $dataUserID;
+      $_SESSION["session_user"] = $dataUserName;
+      $_SESSION["session_role"] = $dataUserRole;
+      header("Location: index.php?success=1");
+      quit();
     } else {
-      // header("Location: connexion.php?failure=1");
-      exit();
+      header("Location: connexion.php?failure=1");
+      quit();
     }    
-}
+  }
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +53,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <title>Connexion</title>
 </head>
 <body>
@@ -53,7 +62,7 @@
     
     <aside class="sidebar">
       
-      <?php include_once("../component/sidebar.php"); ?>
+      <?php include_once("sidebar.php"); ?>
       
     </aside>
     
